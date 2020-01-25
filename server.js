@@ -127,6 +127,39 @@ app.delete("/api/user/:id", (req, res, next) => {
     });
 })
 
+//Get all lists 
+app.get("/api/lists", (req, res, next) => {
+    var sql = "select * from list"
+    var params = []
+    db.all(sql, params, (err, rows) => {
+        if (err) {
+          res.status(400).json({"error":err.message});
+          return;
+        }
+        res.json({
+            "message":"success",
+            "data":rows
+        })
+      });
+});
+
+//Get list by id 
+app.get("/api/list/:id", (req, res, next) => {
+    var sql = "select * from list where id = ?"
+    var params = [req.params.id]
+    db.get(sql, params, (err, row) => {
+        if (err) {
+          res.status(400).json({"error":err.message});
+          return;
+        }
+        res.json({
+            "message":"success",
+            "data":row
+        })
+      });
+});
+
+
 // Insert here other API endpoints
 
 // Default response for any other request

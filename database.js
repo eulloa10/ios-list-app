@@ -30,5 +30,22 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
     }
 });
 
+db.run(`CREATE TABLE list (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  list_name text UNIQUE, 
+  item text,  
+  CONSTRAINT list_name_unique UNIQUE (list_name)
+  )`,
+    (err) => {
+    if (err) { 
+        // Table already created
+    }else{
+        // Table just created, creating some rows
+        var insert = 'INSERT INTO list (list_name, item) VALUES (?,?)'
+        db.run(insert, ["groceries","potatoes",])
+        db.run(insert, ["clothing","belt"])
+    }
+})
+
 
 module.exports = db
