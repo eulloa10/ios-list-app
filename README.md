@@ -1,4 +1,4 @@
-# ERRAND iOS APP
+# Errand iOS App
 
 User will enter to-do list(s) in app. App will then perform one of two tentative actions:
 * Generate image of to-do list and set image as lock screen background
